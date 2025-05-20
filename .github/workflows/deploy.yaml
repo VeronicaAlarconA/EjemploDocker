@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name Login to GHCR
-        run: echo "${{ secrets.GH_TOKEN}} | docker login ghcr.io -u ${{ secrets.GH_USERNAME}} --password-stdin"
+        run: echo "${{ secrets.GH_TOKEN}}"  | docker login ghcr.io -u ${{ secrets.GH_USERNAME}} --password-stdin
       -name: Build and push Image
         run: |
-          docker build -t ghrc.io/${{ secrets.GH_USERNAME}}/fastapi-app:latest
+          docker build -t ghcr.io/${{ secrets.GH_USERNAME}}/fastapi-app:latest
           docker push ghcr.io/${{secrets.GH_USERNAME}}/fastapi-app:latest
