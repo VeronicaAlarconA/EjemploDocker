@@ -12,16 +12,16 @@ jobs:
       contents: read
       packages: write
 
-      steps:
-       - uses: actions/checkout@v3
+    steps:
+    - uses: actions/checkout@v3
 
-       - name: Login to GHCR
-           echo "${{secrets.GH_TOKEN}}" | docker login ghcr.io -u ${{secrets.GH_USERNAME}} --password-stdin
+    - name: Login to GHCR
+        echo "${{secrets.GH_TOKEN}}" | docker login ghcr.io -u ${{secrets.GH_USERNAME}} --password-stdin
       
-       - name: Build and push Image
-         run: |
-            docker build -t ghcr.io/${{ secrets.GH_USERNAME}}/fastapi-app:latest
-            docker push ghcr.io/${{secrets.GH_USERNAME}}/fastapi-app:latest
+    - name: Build and push Image
+        run: |
+        docker build -t ghcr.io/${{ secrets.GH_USERNAME}}/fastapi-app:latest
+        docker push ghcr.io/${{secrets.GH_USERNAME}}/fastapi-app:latest
 
   deploy:
     needs: build
